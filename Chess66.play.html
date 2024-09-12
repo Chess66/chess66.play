@@ -1,0 +1,405 @@
+chess66/
+│
+├── public/
+│   ├── index.html
+│   ├── signup.html
+│   ├── dashboard.html
+│   ├── play.html
+│   ├── styles.css
+│   ├── scripts.js
+│   └── chessboard-1.0.0.min.js
+│   └── chess.min.js
+│   └── stockfish.js
+│
+├── server/
+│   ├── server.js
+│   ├── db.js
+│   └── auth.js
+│
+└── package.json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess66 - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Chess66</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="play.html">Play</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to Chess66</h2>
+        <p>Play chess with friends or challenge our AI.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Chess66. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Chess66</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Chess66 - Sign Up</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="play.html">Play</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Create an Account</h2>
+            <form id="signup-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Chess66. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Chess66</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Chess66 - Dashboard</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="play.html">Play</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-info">
+            <h2>Welcome, <span id="username"></span></h2>
+            <p>ELO Rating: <span id="elo-rating">1200</span></p>
+            <button id="play-button">Play Now</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Chess66. All rights reserved.</p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play - Chess66</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="chessboard-1.0.0.min.js"></script>
+    <script src="chess.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Chess66 - Play</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="play.html">Play</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="board" style="width: 400px"></div>
+        <div class="controls">
+            <button id="start-btn">Start Position</button>
+            <button id="clear-btn">Clear Board</button>
+            <button id="ai-move-btn">AI Move</button>
+        </div>
+        <div class="move-history">
+            <h2>Move History</h2>
+            <div id="move-history"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Chess66. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="stockfish.js"></script>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffc107;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.dashboard-info {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.move-history {
+    margin-top: 20px;
+}
+
+.move-history h2 {
+    margin-bottom: 10px;
+}
+
+.move-history #move-history {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('signup-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('Sign up successful!');
+            window.location.href = 'dashboard.html';
+        } else {
+            alert('Sign up failed: ' + result.message);
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    // Mockup user data for demonstration
+    const user = { username: 'Player1', eloRating: 1200 };
+
+    document.getElementById('username').textContent = user.username;
+    document.getElementById('elo-rating').textContent = user.eloRating;
+
+    document.getElementById('play-button').addEventListener('click', () => {
+        window.location.href = 'play.html';
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const board = ChessBoard('board', {
+        draggable: true,
+        position: 'start',
+        onDrop: handleMove,
+        onSnapEnd: onSnapEnd
+    });
+
+    const game = new Chess();
+    let aiMoveInProgress = false;
+
+    document.getElementById('start-btn').addEventListener('click', () => board.start());
+    document.getElementById('clear-btn').addEventListener('click', () => board.clear());
+    document.getElementById('ai-move-btn').addEventListener('click', () => {
+        if (!aiMoveInProgress && !game.game_over()) {
+            makeAIMove();
+        }
+    });
+
+    function handleMove (oldPos, newPos) {
+        const move = game.move({
+            from: oldPos,
+            to: newPos,
+            promotion: 'q'
+        });
+
+        if (move === null) return 'snapback';
+
+        removeGreySquares();
+        renderMoveHistory(game.history());
+
+        if (game.game_over()) {
+            alert('Game over');
+        } else if (game.turn() === 'b') {
+            makeAIMove();
+        }
+    }
+
+    function onSnapEnd () {
+        board.position(game.fen());
+    }
+
+    function removeGreySquares () {
+        $('#board .square-55d63').css('background', '');
+    }
+
+    function renderMoveHistory (moves) {
+        let historyElement = document.getElementById('move-history');
+        historyElement.innerHTML = '';
+        for (let i = 0; i < moves.length; i++) {
+            historyElement.innerHTML += '<span>' + (i + 1) + '. ' + moves[i] + '</span><br>';
+        }
+    }
+
+    function makeAIMove () {
+        aiMoveInProgress = true;
+        const stockfish = new Worker('stockfish.js');
+        
+        stockfish.postMessage('uci');
+        stockfish.postMessage('position fen ' + game.fen());
+        stockfish.postMessage('go depth 10');
+
+        stockfish.onmessage = function(event) {
+            if (event.data.startsWith('bestmove')) {
+                const move = event.data.split(' ')[1];
+                game.move(move);
+                board.position(game.fen());
+                aiMoveInProgress = false;
+            }
+        };
+    }
+});
+const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
+const uri = 'mongodb://localhost:27017';
+const client = new MongoClient(uri);
+const dbName = 'chess66';
+
+app.post('/signup', async (req, res) => {
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const db = client.db(dbName);
+    const collection = db.collection('users');
+
+    try {
+        await collection.insertOne({ username, email, password: hashedPassword, eloRating: 1200 });
+        res.json({ success: true });
+    } catch (err) {
+        res.json({ success: false, message: err.message });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}/`);
+});
+npm install express body-parser bcrypt jsonwebtoken mongodb
+node server/server.js
+<link rel="stylesheet" href="styles.css">
+<script src="scripts.js"></script>
+app.use(express.static('public'));
+chmod 644 public/*.css public/*.js
+chmod 755 public
+const stockfish = new Worker('/stockfish.js');
+<link rel="stylesheet" href="/styles.css">
+<script src="/scripts.js"></script>
+node server/server.js
